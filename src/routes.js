@@ -8,7 +8,7 @@ const routes = [
     component: Main,
   },
   {
-    path: "/register",
+    path: "register",
     name: "register",
     component: () => import("./pages/RegisterPage"),
   },
