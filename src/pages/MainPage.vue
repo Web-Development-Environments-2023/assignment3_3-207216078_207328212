@@ -1,45 +1,65 @@
 <template>
   <div class="container">
     <h1 class="title">Main Page</h1>
-    <RecipePreviewList title="Randome Recipes" class="RandomRecipes center" />
-    <router-link v-if="!$root.store.username" to="/login" tag="button">You need to Login to vue this</router-link>
-    {{ !$root.store.username }}
-    <RecipePreviewList
-      title="Last Viewed Recipes"
-      :class="{
-        RandomRecipes: true,
-        blur: !$root.store.username,
-        center: true
-      }"
-      disabled
-    ></RecipePreviewList>
-    <!-- <div
-      style="position: absolute;top: 70%;left: 50%;transform: translate(-50%, -50%);"
-    >
-      Centeredasdasdad
-    </div>-->
+    <div class="content-wrapper">
+      <div class="recipes-column">
+        <RecipePreviewList ref="randomPreview" title="Explore this recipes" class="RandomRecipes center" />
+        
+      </div>
+      <div class="login-column">
+        <Login v-if="!$root.store.username"></Login>
+        <RecipePreviewListLoggedIn v-else title="Last Watched Recipes"></RecipePreviewListLoggedIn>
+      </div>
+    </div>
+    <div class="refresh-button">
+      <button @click="refreshRecipes">Refresh Recipes</button>
+    </div>
   </div>
 </template>
 
 <script>
 import RecipePreviewList from "../components/RecipePreviewList";
+import Login from "../components/Login";
+import RecipePreviewListLoggedIn from "../components/RecipePreviewListLoggedIn";
+
+
 export default {
   components: {
-    RecipePreviewList
+    RecipePreviewList,
+    Login,
+    RecipePreviewListLoggedIn
+  },
+  methods: {
+    async refreshRecipes() {
+      // Call the method to update the random recipes
+      this.$refs.randomPreview.updateRecipes();
+    }
   }
 };
 </script>
 
 <style lang="scss" scoped>
-.RandomRecipes {
-  margin: 10px 0 10px;
+.container {
+  min-height: 400px;
 }
-.blur {
-  -webkit-filter: blur(5px); /* Safari 6.0 - 9.0 */
-  filter: blur(2px);
+
+.content-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
 }
-::v-deep .blur .recipe-preview {
-  pointer-events: none;
-  cursor: default;
+
+.recipes-column {
+  flex: 1;
+  margin-right: 20px;
+}
+
+.login-column {
+  flex: 1;
+}
+
+.refresh-button {
+  margin-top: 20px;
+  text-align: center;
 }
 </style>

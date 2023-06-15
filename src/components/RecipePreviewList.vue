@@ -4,11 +4,9 @@
       {{ title }}:
       <slot></slot>
     </h3>
-    <b-row>
-      <b-col v-for="r in recipes" :key="r.id">
-        <RecipePreview class="recipePreview" :recipe="r" />
-      </b-col>
-    </b-row>
+    <div class="recipe-preview-list">
+      <RecipePreview v-for="r in recipes" :key="r.id" class="recipePreview" :recipe="r" />
+    </div>
   </b-container>
 </template>
 
@@ -55,7 +53,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.container {
-  min-height: 400px;
+.recipe-preview-list {
+  display: inline-flex;
+  position: relative;
+  flex-direction: column;
+  align-items: flex-start;
+  height: 500px;
+  width: 200px;
 }
 </style>
