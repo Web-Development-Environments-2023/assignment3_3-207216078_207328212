@@ -4,7 +4,8 @@
     class="recipe-preview"
   >
     <div class="recipe-body">
-      <img v-if="image_load" :src="recipe.image" class="recipe-image" />
+      <!-- <img v-if="image_load" :src="recipe.image" class="recipe-image" /> -->
+      <img v-if="recipe.image != null && recipe.image != 'null' && recipe.image != undefined && recipe.image != 'undefined'" :src="recipe.image" style="width: 170px; height: 150px"/>
     </div>
     <div class="recipe-footer">
       <div :title="recipe.title" class="recipe-title">

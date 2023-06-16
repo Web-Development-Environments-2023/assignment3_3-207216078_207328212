@@ -192,7 +192,8 @@ export default {
             country: this.form.country,
             password: this.form.password,
             email: this.form.email
-          }
+          },
+          {withCredentials: true}
         );
         this.$router.push("/login");
          console.log(response);

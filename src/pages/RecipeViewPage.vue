@@ -59,7 +59,8 @@ export default {
           this.$root.store.server_domain + "/recipes/info",
           {
             params: { id: this.$route.params.recipeId }
-          }
+          },
+           {withCredentials: true}
         );
 
         // console.log("response.status", response.status);
