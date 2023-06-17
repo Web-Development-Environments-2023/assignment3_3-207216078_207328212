@@ -139,6 +139,8 @@
       // console.log(this.recipe.instructions);
       // console.log(this.recipe.extendedIngredients);
 
+      // the following line redirect to main page, i think its relevant after the recipe is added
+      this.$router.push("/");
       try {
         const response = await this.axios.get(
           this.$root.store.server_domain + "/users/createRecipe/",
