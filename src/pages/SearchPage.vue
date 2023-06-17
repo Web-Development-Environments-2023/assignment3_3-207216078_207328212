@@ -155,7 +155,7 @@ button {
 }
 
 .form-group {
-  display: flex;
+  display: inline-block;
   align-items: center;
   justify-content: flex-start;
 }

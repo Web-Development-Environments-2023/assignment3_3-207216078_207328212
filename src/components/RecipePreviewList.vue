@@ -53,8 +53,9 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
 .recipe-preview-list {
+  
   display: inline-flex;
   position: relative;
   flex-direction: column;
@@ -62,4 +63,6 @@ export default {
   height: 500px;
   width: 200px;
 }
+
+
 </style>

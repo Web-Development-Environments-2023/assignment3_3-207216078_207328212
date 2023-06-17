@@ -4,7 +4,6 @@
     <div class="content-wrapper">
       <div class="recipes-column">
         <RecipePreviewList ref="randomPreview" title="Explore this recipes" class="RandomRecipes center" />
-        
       </div>
       <div class="login-column">
         <Login v-if="!$root.store.username"></Login>
@@ -16,6 +15,9 @@
     </div>
   </div>
 </template>
+
+
+
 
 <script>
 import RecipePreviewList from "../components/RecipePreviewList";
@@ -40,11 +42,12 @@ export default {
 
 <style lang="scss" scoped>
 .container {
-  min-height: 400px;
+  min-height: 500px;
+  margin-top: 20px;
 }
 
 .content-wrapper {
-  display: flex;
+  display: block;
   justify-content: space-between;
   align-items: flex-start;
 }

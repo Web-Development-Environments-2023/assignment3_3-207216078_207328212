@@ -2,6 +2,9 @@ import Vue from "vue";
 import App from "./App.vue";
 import VueAxios from "vue-axios";
 import axios from "axios";
+import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap/dist/js/bootstrap.js';
+
 import VueCookies from "vue-cookies";
 //axios.defaults.withCredentials = true;
 Vue.prototype.$http = axios;
