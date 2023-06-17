@@ -12,8 +12,10 @@
                   <li class="active"><a href="index.html">Home<span class="underline"></span></a></li>
                   <li v-if="!$root.store.username"><router-link :to="{ name: 'login' }">Login</router-link><span class="underline"></span></li>
                   <li v-if="!$root.store.username"><router-link :to="{ name: 'register' }">Register</router-link><span class="underline"></span></li>
-                  <li><a href="#">Search<span class="underline"></span></a></li>
-                  <li><a href="#">About<span class="underline"></span></a></li>
+                  <!-- <li><a href="#">Search<span class="underline"></span></a></li> -->
+                  <li><router-link :to="{ name: 'search' }">Search</router-link><span class="underline"></span></li>
+                  <!-- <li><a href="#">About<span class="underline"></span></a></li> -->
+                  <li><router-link :to="{ name: 'about' }">About</router-link><span class="underline"></span></li>
             <li v-if="$root.store.username" class="dropdown-item">
               <a href="#" class="dropdown-toggle">Personal<span class="underline"></span></a>
               <ul class="dropdown-menu">
