@@ -25,7 +25,6 @@
           </label>
         </div>
       </div>
-
       <div class="form-group">
         <label for="cuisine">Filter By Cuisine:</label>
         <select id="cuisine" v-model="selectedCuisine">
@@ -49,7 +48,7 @@
           <option v-for="intolerance in intolerances" :key="intolerance" :value="intolerance">{{ intolerance }}</option>
         </select>
       </div>
-
+    
       <!-- <div class="form-group">
         <button @click="SortByPopularity">Sort By Popularity</button>
         <button @click="SortByPreparationTime">Sort By Preparation Time</button>
@@ -113,6 +112,14 @@ export default {
       } catch (error) {
         console.log(error);
       }
+      
+      // seems that the params works good :)
+      // console.log(this.searchQuery);
+      // console.log(this.$route.params.query);
+      // console.log(this.resultsCount);
+      // console.log(this.selectedCuisine);
+      // console.log(this.selectedDiet);
+      // console.log(this.selectedIntolerance );
     },
   }
 };
@@ -123,6 +130,7 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: 10%;
 }
 
 .title {
@@ -136,9 +144,9 @@ export default {
   margin-top: 20px;
 }
 
-.form-group {
+/* .form-group {
   margin-bottom: 10px;
-}
+} */
 
 .radio-group {
   display: flex;
@@ -155,9 +163,11 @@ button {
 }
 
 .form-group {
-  display: inline-block;
+  /* display: inline-block; */
+  /* align-items: center;
+  justify-content: flex-start; */
+  display: flex;
   align-items: center;
-  justify-content: flex-start;
 }
 
 .label {

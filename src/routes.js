@@ -33,6 +33,26 @@ const routes = [
     component: () => import("./pages/aboutPage"),
   },
   {
+    path: "/createRecipe",
+    name: "createRecipe",
+    component: () => import("./components/CreateNewRecipeModal.vue"),
+  },
+  {
+    path: "/favorites",
+    name: "favorites",
+    component: () => import("./pages/MyFavoritesPage.vue"),
+  },
+  {
+    path: "/myRecipes",
+    name: "myRecipes",
+    component: () => import("./pages/MyRecipesPage.vue"),
+  },
+  {
+    path: "/familyRecipes",
+    name: "familyRecipes",
+    component: () => import("./pages/MyFamilyRecipesPage.vue"),
+  },
+  {
     path: "*",
     name: "notFound",
     component: NotFound,

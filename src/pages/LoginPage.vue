@@ -1,6 +1,6 @@
 <template>
     <div style="align-items: center;justify-content: center; display:grid">
-      <Login style="margin-top:100px"></Login>
+      <Login style="margin-top:150px"></Login>
     </div>
 </template>
 

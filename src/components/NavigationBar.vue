@@ -1,5 +1,7 @@
 <template>
 
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script> -->
 
 <header id="myPage"  data-spy="scroll" data-target=".navbar" data-offset="60">
 
@@ -27,18 +29,18 @@
             <li class="nav-item">
               <router-link :to="{ name: 'about' }" class="nav-link" >About</router-link>
             </li>  
-            <li class="nav-item">
-              <router-link v-if="$root.store.username" :to="{ name: 'createRecipe' }" class="nav-link" >Create New Recipe</router-link>
+            <li class="nav-item"> 
+               <router-link v-if="!$root.store.username" :to="{ name: 'createRecipe' }" class="nav-link" @click="openModal">Create New Recipe</router-link>
             </li>  
-            <li v-if="$root.store.username" class="nav-item dropdown">
+            <CreateNewRecipeModal v-if="showModal" @closeModal="closeModal"></CreateNewRecipeModal>
+            <li v-if="!$root.store.username" class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Personal
             </a>
             <div class="dropdown-menu">
-              <router-link :to="{ name: 'myFavorites' }" class="dropdown-item">My Favorites</router-link>
+              <router-link :to="{ name: 'favorites' }" class="dropdown-item">My Favorites</router-link>
               <router-link :to="{ name: 'myRecipes' }" class="dropdown-item">My Recipes</router-link>
               <router-link :to="{ name: 'familyRecipes' }" class="dropdown-item">Family Recipes</router-link>
-              <router-link :to="{ name: 'myMeal' }" class="dropdown-item">My Meal</router-link>
             </div>
           </li>
           <li class="nav-item">
@@ -51,10 +53,14 @@
   </template>
   
   <script>
+  import CreateNewRecipeModal from './CreateNewRecipeModal.vue';
+  
   export default {
+    components: {CreateNewRecipeModal},
     data() {
       return {
-        isMenuOpen: false
+        isMenuOpen: false,
+        showModal: false
       }
     },
     methods: {
@@ -67,7 +73,15 @@
             this.$router.push("/").catch(() => {
                 this.$forceUpdate();
             });
-        }
+      },
+      openModal() {
+        const modal = new bootstrap.Modal(document.getElementById('createNewRecipeModal'));
+        modal.show();
+        this.showModal = true;
+      },
+      closeModal() {
+        this.showModal = false;
+      }
     }
   }
   </script>

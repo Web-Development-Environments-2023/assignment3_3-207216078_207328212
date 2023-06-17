@@ -1,8 +1,8 @@
 <template>
   <div id="app">
     <NavigationBar></NavigationBar>
-    <MainPage></MainPage>
-    <!-- <router-view /> -->
+    <!-- <MainPage></MainPage> -->
+    <router-view />
   </div>
 </template>
 
@@ -21,7 +21,7 @@ export default {
             });
         }
     },
-    components: { NavigationBar, MainPage }
+    components: { NavigationBar }
 };
 </script>
 

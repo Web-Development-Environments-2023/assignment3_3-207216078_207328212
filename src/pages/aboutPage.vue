@@ -15,6 +15,6 @@
   </script>
   
   <style>
-  /* Add any additional styling specific to the AboutPage */
+
   </style>
   

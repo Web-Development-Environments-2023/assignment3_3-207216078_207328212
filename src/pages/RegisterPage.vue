@@ -231,5 +231,6 @@ export default {
 <style lang="scss" scoped>
 .container {
   max-width: 500px;
+  margin-top: 10%;
 }
 </style>
