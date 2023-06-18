@@ -1,18 +1,14 @@
 <template>
-    <b-container>
-      <h3>
-        {{ title }}:
-        <slot></slot>
-      </h3>
-      <b-col>
-        <b-row v-for="r in recipes" :key="r.id">
-        <div class="recipe-preview-list-Logged-in">
-          <RecipePreview class="recipePreview" :recipe="r" />
-        </div>
-        </b-row>
-      </b-col>
-    </b-container>
-  </template>
+  <b-container>
+    <h3>
+      {{ title }}:
+      <slot></slot>
+    </h3>
+    <div class="recipe-preview-list">
+      <RecipePreview v-for="r in recipes" :key="r.id" class="recipePreview" :recipe="r"/>
+    </div>
+  </b-container>
+</template>
   
   <script>
   import RecipePreview from "./RecipePreview.vue";
@@ -42,7 +38,6 @@
           const response = await this.axios.get(
             this.$root.store.server_domain + "/users/seen",
             // "https://test-for-3-2.herokuapp.com/recipes/random"
-            // {withCredentials: true}
             {withCredentials: true}
           );
   
@@ -65,13 +60,12 @@
   }
 
   .recipe-preview-list-Logged-in {
-  display: flex;
+    display: inline-flex;
+  position: relative;
   flex-direction: column;
   align-items: flex-start;
-  justify-content: flex-end;
-  height: 200px;
+  height: 500px;
   width: 200px;
-  margin-left: auto;
 }
 
   </style>
