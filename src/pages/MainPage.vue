@@ -1,21 +1,20 @@
 <template>
-  <div class="container">
+  <div class="container-fluid">
     <h1 class="title">Main Page</h1>
-      <div class="split-container">
-        <div class="recipes-column">
-          <RecipePreviewList ref="randomPreview" title="Explore this recipes" class="RandomRecipes center" />
-          <div class="refresh-button">
-            <button @click="refreshRecipes">Refresh Recipes</button>
-          </div>
-        </div>
-        <div class="login-column">
-          <!-- <Login v-if="!$root.store.username" style="margin-top: 20%;"></Login> -->
-          <!-- <RecipePreviewListLoggedIn v-else title="Last Watched Recipes"></RecipePreviewListLoggedIn> -->
-          <RecipePreviewListLoggedIn v-if="!$root.store.username" title="Last watched recipes"></RecipePreviewListLoggedIn>
-        </div>
+    <div class="row">
+      <div class="col-lg-6">
+        <RecipePreviewList ref="randomPreview" title="Explore these recipes" class="RandomRecipes center" />
+        <!-- <button @click="refreshRecipes" style="position: relative;">Refresh Recipes</button> -->
       </div>
+      <div class="col-lg-6">
+        <!-- <Login v-if="!$root.store.username" style="margin-top: 20%;"></Login> -->
+        <!-- <RecipePreviewListLoggedIn v-else title="Last Watched Recipes"></RecipePreviewListLoggedIn> -->
+        <RecipePreviewListLoggedIn v-if="!$root.store.username" title="Last watched recipes"></RecipePreviewListLoggedIn>
+      </div>
+    </div>
   </div>
 </template>
+
 
 
 
@@ -43,15 +42,13 @@ export default {
 <style lang="scss" scoped>
 .container {
   margin-top: 100px;
-  // display: flex;
-  // flex-direction: column;
-  // align-items: flex-start;
   margin-bottom: 20px;
 }
 
 .recipes-column {
   float: left;
   width: 50%;
+  margin-right: 10%;
 }
 
 .login-column {
@@ -73,6 +70,24 @@ export default {
   content: "";
   display: table;
   clear: both;
+}
+
+.container-fluid {
+  padding: 0; 
+}
+
+.title {
+  text-align: center;
+  padding: 20px;
+}
+
+.row {
+  margin-left: 30px;
+  margin-right: 0; 
+}
+
+.col-lg-6 {
+  padding: 15px;
 }
 </style>
 

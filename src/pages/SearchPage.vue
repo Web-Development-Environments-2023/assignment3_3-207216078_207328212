@@ -73,14 +73,20 @@ export default {
       selectedCuisine: "",
       selectedDiet: "",
       selectedIntolerance: "",
+      // intolerance: null,
+      // diet: null,
+      // cuisine: null,
+
       intolerances: [
         "dairy", "egg", "gluten", "grain", "peanut", "seafood", "sesame", "shellfish", "soy", "sulfite", "tree nut", "wheat"
       ],
       diets: [
-        "dairy", "egg", "gluten", "grain", "peanut", "seafood", "sesame", "shellfish", "soy", "sulfite", "tree nut", "wheat"
+        "Gluten Free", "Ketogenic", "Vegetarian", "Lacto-Vegetarian", "Ovo-Vegetarian", "Vegan", "Pescetarian", "Paleo", "Primal", "Whole30"
       ],
       cuisines: [
-        "dairy", "egg", "gluten", "grain", "peanut", "seafood", "sesame", "shellfish", "soy", "sulfite", "tree nut", "wheat"
+        "African", "American", "British", "Cajun", "Caribbean", "Chinese", "Eastern European", "European", "French", "German",
+        "Greek", "Indian", "Irish", "Italian", "Japanese", "Jewish", "Korean", "Latin American", "Mediterranean", "Mexican", "Middle Eastern",
+        "Nordic", "Southern", "Spanish", "Thai", "Vietnamese"
       ],
     };
   },
@@ -88,7 +94,7 @@ export default {
     async search() {
       try {
         const response = await this.axios.get(
-          this.$root.store.server_domain + "/recipes/query/" + this.searchQuery,
+          this.$root.store.server_domain + "/recipes/search/" + this.searchQuery,
           // "https://test-for-3-2.herokuapp.com/recipes/random"
           {
             params: {

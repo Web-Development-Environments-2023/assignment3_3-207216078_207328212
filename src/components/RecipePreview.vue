@@ -5,7 +5,7 @@
     style="text-decoration: none; color: black;"
   >
     <div>
-      <b-card no-body class="overflow-hidden" style="width: 500px; margin-top: 10%;">
+      <b-card no-body class="overflow-hidden" style="width: 600px; margin-top: 10%;">
         <b-row no-gutters>
           <b-col md="6">
             <div style="position: relative;">
@@ -16,7 +16,7 @@
             </div>
           </b-col>
           <b-col md="6">
-            <b-card-body :title="recipe.title" style="width: 130%;">
+            <b-card-body :title="recipe.title" style="width: 130%; font-size: 16Spx  ;">
               <b-card-text>
                 <li> Prepartion time: {{ recipe.readyInMinutes }} minutes</li>
                 <li>{{ recipe.popularity }} likes</li>
@@ -71,6 +71,16 @@ export default {
 .rounded-0 {
   height: 100%;
 }
+
+/* .card-body {
+  font-size: 16px;
+  padding: 10px;
+}
+
+.card-title {
+  font-size: 18px;
+  overflow-wrap: break-word;
+} */
 
 </style>
 
