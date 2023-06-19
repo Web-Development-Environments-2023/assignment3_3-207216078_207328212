@@ -110,14 +110,26 @@ export default {
           }
         );
 
+        if (response.data.length == 0) {
+          alert("No recipes found to your search, please try again");
+          return;
+        }
+
+        if (this.response.status != 200) {
+          this.$router.replace("/NotFound");
+        }
+
         console.log(response);
         const recipess = response.data;
         this.recipes = [];
         this.recipes.push(...recipess);
          console.log(this.recipes);
       } catch (error) {
+        this.resetSearch();
         console.log(error);
+        this.$router.replace("/NotFound");
       }
+      this.resetSearch();
       
       // seems that the params works good :)
       // console.log(this.searchQuery);
@@ -127,6 +139,22 @@ export default {
       // console.log(this.selectedDiet);
       // console.log(this.selectedIntolerance );
     },
+
+    SortByPopularity() {
+
+    }, 
+
+    SortByPreparationTime() {
+
+    },
+
+    resetSearch() {
+      this.searchQuery = "",
+      this.resultsCount = 5,
+      this.selectedCuisine = "",
+      this.selectedDiet = "",
+      this.selectedIntolerance = ""
+    }
   }
 };
 </script>
