@@ -9,9 +9,6 @@
         <b-row no-gutters>
           <b-col md="6">
             <div style="position: relative;">
-              <svg v-if="recipe.favorite" class="favorite-icon" style="position: absolute; top: 5px; left: 5px;">
-                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" style="fill: yellow;" />
-              </svg>
               <b-card-img v-if="recipe.image != null && recipe.image != 'null' && recipe.image != undefined && recipe.image != 'undefined'" :src="recipe.image" alt="Image" class="rounded-0 img-fluid" style="height: 200px; object-fit: cover;"></b-card-img>
             </div>
           </b-col>
@@ -57,6 +54,31 @@ export default {
     recipe: {
       type: Object,
       required: true
+    }
+  },
+  methods: {
+
+    async handleFavoriteClick() {
+      try {
+        const response = await this.axios.post(
+          this.$root.store.server_domain + "/users/favorites",
+          // "https://test-for-3-2.herokuapp.com/recipes/random"
+          {withCredentials: true}
+        );
+
+        if (response.data.length == 0) {
+          this.$router.replace("/");
+          alert("You don't have favorite recipes yet :(");
+        }
+
+        console.log(response);
+        const recipess = response.data;
+        this.recipes = [];
+        this.recipes.push(...recipess);
+        console.log(this.recipes);
+      } catch (error) {
+        console.log(error);
+      }
     }
   }
 };
