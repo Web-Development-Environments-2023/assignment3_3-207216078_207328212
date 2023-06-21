@@ -142,6 +142,7 @@
       // the following line redirect to main page, i think its relevant after the recipe is added
       this.$router.push("/");
       try {
+        // this.axios.defaults.withCredentials = true;  
         const response = await this.axios.get(
           this.$root.store.server_domain + "/users/createRecipe/",
           // "https://test-for-3-2.herokuapp.com/recipes/random"

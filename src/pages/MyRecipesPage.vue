@@ -33,6 +33,7 @@ import RecipePreview from "../components/RecipePreview";
     methods: {
       async getFavoriteRecipes() {
       try {
+        // this.axios.defaults.withCredentials = true; 
         const response = await this.axios.get(
           this.$root.store.server_domain + "/users/myRecipes",
           // "https://test-for-3-2.herokuapp.com/recipes/random"

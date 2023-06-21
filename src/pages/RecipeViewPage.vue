@@ -81,6 +81,7 @@ export default {
       // response = this.$route.params.response;
 
       try {
+        // this.axios.defaults.withCredentials = true; 
         response = await this.axios.get(
 
           this.$root.store.server_domain + "/recipes/extendInfo/" + this.$route.params.recipeId,

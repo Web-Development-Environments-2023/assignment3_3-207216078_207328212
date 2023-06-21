@@ -6,7 +6,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/js/bootstrap.js';
 
 import VueCookies from "vue-cookies";
-//axios.defaults.withCredentials = true;
+// axios.defaults.withCredentials = true;
 Vue.prototype.$http = axios;
 import routes from "./routes";
 import VueRouter from "vue-router";

@@ -30,10 +30,10 @@
               <router-link :to="{ name: 'about' }" class="nav-link" >About</router-link>
             </li>  
             <li class="nav-item"> 
-               <router-link v-if="!$root.store.username" :to="{ name: 'createRecipe' }" class="nav-link" @click="openModal">Create New Recipe</router-link>
+               <router-link v-if="$root.store.username" :to="{ name: 'createRecipe' }" class="nav-link" @click="openModal">Create New Recipe</router-link>
             </li>  
             <CreateNewRecipeModal v-if="showModal" @closeModal="closeModal"></CreateNewRecipeModal>
-            <li v-if="!$root.store.username" class="nav-item dropdown">
+            <li v-if="$root.store.username" class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Personal
             </a>

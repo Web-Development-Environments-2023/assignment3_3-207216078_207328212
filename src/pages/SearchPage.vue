@@ -93,6 +93,7 @@ export default {
   methods: {
     async search() {
       try {
+        // this.axios.defaults.withCredentials = true; 
         const response = await this.axios.get(
           this.$root.store.server_domain + "/recipes/search/" + this.searchQuery,
           // "https://test-for-3-2.herokuapp.com/recipes/random"

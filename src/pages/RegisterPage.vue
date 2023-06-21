@@ -2,6 +2,48 @@
   <div class="container">
     <h1 class="title">Register</h1>
     <b-form @submit.prevent="onRegister" @reset.prevent="onReset">
+      
+      <b-form-group
+        id="input-group-firstName"
+        label-cols-sm="3"
+        label="First Name:"
+        label-for="firstName"
+      >
+        <b-form-input
+          id="firstName"
+          v-model="$v.form.firstName.$model"
+          type="text"
+          :state="validateState('firstName')"
+        ></b-form-input>
+        <b-form-invalid-feedback v-if="!$v.form.firstName.required">
+          First name is required
+        </b-form-invalid-feedback>
+        <b-form-invalid-feedback v-if="!$v.form.firstName.alpha">
+          First name alpha
+        </b-form-invalid-feedback>
+      </b-form-group>
+
+      <b-form-group
+        id="input-group-lastName"
+        label-cols-sm="3"
+        label="Last Name:"
+        label-for="lastName"
+      >
+        <b-form-input
+          id="lastName"
+          v-model="$v.form.lastName.$model"
+          type="text"
+          :state="validateState('lastName')"
+        ></b-form-input>
+        <b-form-invalid-feedback v-if="!$v.form.lastName.required">
+          Last name is required
+        </b-form-invalid-feedback>
+        <b-form-invalid-feedback v-if="!$v.form.lastName.alpha">
+          Last name alpha
+        </b-form-invalid-feedback>
+      </b-form-group>
+
+
       <b-form-group
         id="input-group-username"
         label-cols-sm="3"
@@ -66,6 +108,9 @@
         >
           Have length between 5-10 characters long
         </b-form-invalid-feedback>
+        <b-form-invalid-feedback v-if="!$v.form.password.valid">
+          Password must contains one digit and one special character minimun
+        </b-form-invalid-feedback>
       </b-form-group>
 
       <b-form-group
@@ -87,6 +132,27 @@
           v-else-if="!$v.form.confirmedPassword.sameAsPassword"
         >
           The confirmed password is not equal to the original password
+        </b-form-invalid-feedback>
+      </b-form-group>
+
+
+      <b-form-group
+        id="input-group-email"
+        label-cols-sm="3"
+        label="Email Address:"
+        label-for="email"
+      >
+        <b-form-input
+          id="email"
+          v-model="$v.form.email.$model"
+          type="text"
+          :state="validateState('email')"
+        ></b-form-input>
+        <b-form-invalid-feedback v-if="!$v.form.email.required">
+          Email address is required
+        </b-form-invalid-feedback>
+        <b-form-invalid-feedback v-if="!$v.form.email.alpha">
+          Email address alpha
         </b-form-invalid-feedback>
       </b-form-group>
 
@@ -151,6 +217,18 @@ export default {
   },
   validations: {
     form: {
+      firstName: {
+        required,
+        alpha
+      },
+      lastName: {
+        required,
+        alpha
+      },
+      email: {
+        required,
+        email
+      },
       username: {
         required,
         length: (u) => minLength(3)(u) && maxLength(8)(u),
@@ -161,7 +239,18 @@ export default {
       },
       password: {
         required,
+        valid: function(pass) {
+          const containsDigit = /\d/.test(pass);
+          const containsSpecial = /[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/.test(pass);
+          if (containsDigit && containsSpecial) {
+            return true;
+          }
+          else {
+            return false;
+          }
+        },
         length: (p) => minLength(5)(p) && maxLength(10)(p)
+
       },
       confirmedPassword: {
         required,
@@ -181,6 +270,7 @@ export default {
     },
     async Register() {
       try {
+        // this.axios.defaults.withCredentials = true; 
         const response = await this.axios.post(
           // "https://test-for-3-2.herokuapp.com/user/Register",
           this.$root.store.server_domain + "/Register",

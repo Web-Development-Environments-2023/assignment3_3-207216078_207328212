@@ -4,12 +4,14 @@
     <div class="row">
       <div class="col-lg-6">
         <RecipePreviewList ref="randomPreview" title="Explore these recipes" class="RandomRecipes center" />
-        <!-- <button @click="refreshRecipes" style="position: relative;">Refresh Recipes</button> -->
+        <div style="display: flex; justify-content: center; margin-top: 325px;">
+          <button @click="refreshRecipes">Refresh Recipes</button>
+        </div>
       </div>
       <div class="col-lg-6">
-        <!-- <Login v-if="!$root.store.username" style="margin-top: 20%;"></Login> -->
-        <!-- <RecipePreviewListLoggedIn v-else title="Last Watched Recipes"></RecipePreviewListLoggedIn> -->
-        <RecipePreviewListLoggedIn v-if="!$root.store.username" title="Last watched recipes"></RecipePreviewListLoggedIn>
+        <Login v-if="!$root.store.username" style="margin-top: 20%;"></Login>
+        <!-- <RecipePreviewListLoggedIn v-else title="Last Watched Recipes"></RecipePreviewListLoggedIn>  -->
+        <RecipePreviewListLoggedIn v-if="$root.store.username" title="Last watched recipes"></RecipePreviewListLoggedIn>
       </div>
     </div>
   </div>
@@ -18,16 +20,17 @@
 
 
 
+
 <script>
 import RecipePreviewList from "../components/RecipePreviewList";
-// import Login from "../components/Login";
+import Login from "../components/Login";
 import RecipePreviewListLoggedIn from "../components/RecipePreviewListLoggedIn";
 
 
 export default {
   components: {
     RecipePreviewList,
-    // Login
+    Login,
     RecipePreviewListLoggedIn
   },
   methods: {

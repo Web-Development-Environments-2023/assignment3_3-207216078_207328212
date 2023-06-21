@@ -60,6 +60,7 @@ export default {
 
     async handleFavoriteClick() {
       try {
+        // this.axios.defaults.withCredentials = true; 
         const response = await this.axios.post(
           this.$root.store.server_domain + "/users/favorites",
           // "https://test-for-3-2.herokuapp.com/recipes/random"
