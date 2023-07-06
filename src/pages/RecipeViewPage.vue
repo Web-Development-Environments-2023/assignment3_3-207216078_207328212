@@ -69,14 +69,27 @@
             <h3>
               Ingredients
             </h3>
-            <ul>
-              <li
-                v-for="(r, index) in recipe.extendedIngredients"
-                :key="index + '_' + r.id"
+            <div v-if="recipe.popularity!=-2">
+              <ul>
+                <li
+                  v-for="(r, index) in recipe.extendedIngredients"
+                  :key="index + '_' + r.id"
+                >
+                  {{ r.original }}
+                </li>
+              </ul>
+            </div>
+            <div v-else>
+       
+                <li
+                  v-for="(r, index) in recipe.extendedIngredients"
+                  :key="index + '_' + r.ingredient_name"
+              
               >
-                {{ r.original }}
+                  {{ r.ingredient_name }} : {{ r.amount }} {{r.units}}
               </li>
-            </ul>
+             
+            </div>
           </div>
           <!-- <div class="wrapped">
             Instructions:

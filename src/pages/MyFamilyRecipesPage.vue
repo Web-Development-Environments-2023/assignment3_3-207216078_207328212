@@ -59,8 +59,7 @@
                                   Ingredients
                                 </h3>
                                 <li
-                                    v-for="(r, index) in recipe[0].extendedIngredients
-"
+                                    v-for="(r, index) in recipe[0].extendedIngredients"
                                     :key="index + '_' + r.ingredient_name"
                                 
                                 >
