@@ -41,11 +41,9 @@ export default {
           {withCredentials: true}
         );
 
-        console.log(response);
         const recipess = response.data;
         this.recipes = [];
         this.recipes.push(...recipess);
-         console.log(this.recipes);
       } catch (error) {
         console.log(error);
       }
@@ -61,8 +59,7 @@ export default {
   position: relative;
   flex-direction: column;
   align-items: flex-start;
-  height: 500px;
-  width: 200px;
+
 }
 
 

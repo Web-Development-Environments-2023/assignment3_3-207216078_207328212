@@ -1,10 +1,10 @@
 <template>
   <b-container>
-    <h1>My Favorites Recipes</h1>
-    <b-row>
+    <center><h1>My Favorites Recipes</h1></center>
+    <b-row class="recipe-preview-wrapper">
       <b-col v-for="(recipe, index) in recipes" :key="recipe.id" :lg="6" :md="6" :sm="12">
-        <div class="recipe-preview-wrapper">
-          <RecipePreview class="recipePreview" :recipe="recipe" />
+        <div >
+          <RecipePreview class="recipe-preview" :recipe="recipe"/>
         </div>
         <b-col v-if="(index + 1) % 2 === 0" class="clearfix"></b-col>
       </b-col>
@@ -44,12 +44,10 @@ import RecipePreview from "../components/RecipePreview";
           this.$router.replace("/");
           alert("You don't have favorite recipes yet :(");
         }
-
-        console.log(response);
+        
         const recipess = response.data;
         this.recipes = [];
         this.recipes.push(...recipess);
-        console.log(this.recipes);
       } catch (error) {
         console.log(error);
       }
@@ -61,15 +59,16 @@ import RecipePreview from "../components/RecipePreview";
   
   <style>
 .container {
-  margin: 0 auto;
   margin-top: 10%;
 }
 
 .recipe-preview-wrapper {
   margin-bottom: 15px;
-  margin-right: 100px;
 }
 
+.recipe-preview-wrapper .recipe-preview {
+  margin-right: 20%;
+}
 .clearfix {
   clear: both;
 }

@@ -34,15 +34,13 @@
     methods: {
       async updateRecipes() {
         try {
-          console.log("why")
           // this.axios.defaults.withCredentials = true; 
           const response = await this.axios.get(
             this.$root.store.server_domain + "/users/seen",
             // "https://test-for-3-2.herokuapp.com/recipes/random"
             {withCredentials: true}
           );
-          
-          console.log(response);
+          // this.axios.defaults.withCredentials = false;
           const recipess = response.data;
           this.recipes = [];
           this.recipes.push(...recipess);

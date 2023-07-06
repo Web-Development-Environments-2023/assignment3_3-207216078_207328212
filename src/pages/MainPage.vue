@@ -1,11 +1,11 @@
 <template>
   <div class="container-fluid">
-    <h1 class="title">Main Page</h1>
+    <!-- <h1 class="title">Main Page</h1> -->
     <div class="row">
       <div class="col-lg-6">
         <RecipePreviewList ref="randomPreview" title="Explore these recipes" class="RandomRecipes center" />
-        <div style="display: flex; justify-content: center; margin-top: 325px;">
-          <button @click="refreshRecipes">Refresh Recipes</button>
+        <div style="display: flex; justify-content: center; margin-top: 300px;">
+          <b-button type="reset" variant="warning" @click="refreshRecipes">Refresh Recipes</b-button>
         </div>
       </div>
       <div class="col-lg-6">

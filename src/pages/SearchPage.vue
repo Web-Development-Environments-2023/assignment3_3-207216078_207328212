@@ -1,11 +1,13 @@
 <template>
   <div class="container">
-    <h1 class="title">Search Page</h1>
 
-    <div class="search-form">
+      <div class="search-form" >
+      
+        <h1 class="title">Search Page</h1>
+
       <div class="form-group">
         <label for="searchQuery">Search:</label>
-        <input type="text" id="searchQuery" v-model="searchQuery" placeholder="What do you want to make?" class="wide-input" />
+        <input type="text" id="searchQuery" v-model="searchQuery" placeholder="What do you want to make?" class="wide-input" style="width: 220px;"/>
       </div>
 
       <div class="form-group">
@@ -53,26 +55,43 @@
         <button @click="SortByPopularity">Sort By Popularity</button>
         <button @click="SortByPreparationTime">Sort By Preparation Time</button>
       </div> -->
+      <div>
+        <div style="display:inline-block; padding:20px">
+          <!-- <button @click="search">Search</button> -->
+          <b-button variant="success" @click="search">Search</b-button>
+        </div>
 
-      <div class="form-group">
-        <button @click="search">Search</button>
+        <div style="display:inline-block"> 
+              <b-button type="reset" variant="danger" @click="resetSearch">Reset</b-button>
+            </div>
+        <div style="float:right; display:inline-block; margin-top: 10px; margin-left:50px;" v-show="this.$root.store.array_search.length != 0">
+              <b-dropdown id="dropdown-1" text="Sort" class="m-md-2" variant="warning" >
+                <b-button @click="SortByPopularity">Popularity</b-button>
+                <b-button @click="SortByPreparationTime">Time</b-button>
+              </b-dropdown>
+        </div>
       </div>
-
-
+      <div id="res">
+        <center><RecipePreviewListSearch :recipes="this.$root.store.array_search"></RecipePreviewListSearch></center>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
+import RecipePreviewListSearch from "../components/RecipePreviewListSearch";
 export default {
+  
   name: "SearchPage",
+  components: { RecipePreviewListSearch },
   data() {
     return {
-      searchQuery: "",
+      searchQuery: null,
       resultsCount: 5,
-      selectedCuisine: "",
-      selectedDiet: "",
-      selectedIntolerance: "",
+      selectedCuisine: null,
+      selectedDiet: null,
+      selectedIntolerance: null,
+      response:[],
       // intolerance: null,
       // diet: null,
       // cuisine: null,
@@ -91,10 +110,15 @@ export default {
     };
   },
   methods: {
+
     async search() {
       try {
-        // this.axios.defaults.withCredentials = true; 
-        const response = await this.axios.get(
+        if (!this.searchQuery) {
+          alert("Please fill the query of the serach field.");
+          return;
+        }
+
+        this.response = await this.axios.get(
           this.$root.store.server_domain + "/recipes/search/" + this.searchQuery,
           // "https://test-for-3-2.herokuapp.com/recipes/random"
           {
@@ -111,26 +135,24 @@ export default {
           }
         );
 
-        if (response.data.length == 0) {
+        if (this.response.data.length == 0) {
           alert("No recipes found to your search, please try again");
           return;
         }
-
-        if (this.response.status != 200) {
+        console.log("serachpage - respons");
+        console.log(this.response);
+        if (this.response.status !== 200) {
           this.$router.replace("/NotFound");
         }
 
-        console.log(response);
-        const recipess = response.data;
-        this.recipes = [];
-        this.recipes.push(...recipess);
-         console.log(this.recipes);
+        this.response = this.response.data;
+        this.$root.store.array_search = this.response;
+
       } catch (error) {
-        this.resetSearch();
+        // this.resetSearch();
         console.log(error);
         this.$router.replace("/NotFound");
-      }
-      this.resetSearch();
+      };
       
       // seems that the params works good :)
       // console.log(this.searchQuery);
@@ -142,43 +164,56 @@ export default {
     },
 
     SortByPopularity() {
-
+      console.log("sortbypopularity")
+      this.response = [];
+        let sorted_arr = this.$root.store.array_search;
+        sorted_arr.sort(function comparePopularity(a,b) {
+          return parseInt(a.popularity) - parseInt(b.popularity);
+        });
+        this.response = sorted_arr;
+        this.$forceUpdate();
     }, 
 
     SortByPreparationTime() {
-
+      this.response = [];
+        let sorted_arr = this.$root.store.array_search;
+        sorted_arr.sort(function compareTime(a,b) {
+          return parseInt(a.readyInMinutes) - parseInt(b.readyInMinutes);
+        });
+        this.response = sorted_arr;
+        this.$forceUpdate();
     },
 
     resetSearch() {
-      this.searchQuery = "",
+      this.searchQuery = null,
       this.resultsCount = 5,
-      this.selectedCuisine = "",
-      this.selectedDiet = "",
-      this.selectedIntolerance = ""
+      this.selectedCuisine = null,
+      this.selectedDiet = null,
+      this.selectedIntolerance = null
     }
   }
 };
 </script>
 
 <style>
-.container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 10%;
-}
 
-.title {
-  /* Add styling for the title */
+.container {
+  margin-top: 5%;
 }
 
 .search-form {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  margin-top: 20px;
-}
+  margin-top: 100px;
+  position:relative;
+   align-items: center;
+   justify-content: center; 
 
+}
+.title{
+  margin-bottom: 20px;
+}
 /* .form-group {
   margin-bottom: 10px;
 } */

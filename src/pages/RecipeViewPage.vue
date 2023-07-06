@@ -1,43 +1,74 @@
 <template>
-  <div class="container">
+  <div style="margin-top:100px">
     <div v-if="recipe">
-      <div class="recipe-header mt-3 mb-4">
-        <h1>{{ recipe.title }}</h1>
+      <div class="recipe-header mt-3 mb-4" >
         <img :src="recipe.image" class="center" />
-        <b-button :disabled="isFavorite" @click="handleFavoriteClick">{{ addTofavoritesButtonTxt }}</b-button>
+        <center><h1>{{ recipe.title }}</h1></center>
+        <center><b-button :disabled="recipe.favorite" @click="handleFavoriteClick">
+          {{ recipe.favorite ? 'Already In Favorites' : addTofavoritesButtonTxt }}
+        </b-button></center>
       </div>
-      <div class="recipe-body">
+      <center>
+      <div class="recipe-body" >
         <div class="wrapper">
           <div class="wrapped">
-            <div class="mb-3">
+            <div >
               <div>Ready in {{ recipe.readyInMinutes }} minutes</div>
-              <div>Likes: {{ recipe.aggregateLikes }} likes</div>
+              <div v-if="recipe.popularity && recipe.popularity.length != 0">Likes: {{ recipe.popularity }} likes</div>
+              <div v-else>Likes: 0 likes</div>
               <div>Vegan
                 <svg v-if="recipe.vegan" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">>
                   <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+                </svg>
+                <svg v-else xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
+                  <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
                 </svg>
               </div>
               <div>Vegetarian
                 <svg v-if="recipe.vegetarian" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">>
                   <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
                 </svg>
+                <svg v-else xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
+                  <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+                </svg>
               </div>
               <div>Gluten Free
                 <svg v-if="recipe.glutenFree" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">>
                   <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
                 </svg>
+                <svg v-else xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
+                  <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+                </svg>
+              </div>
+              <div>Seen
+                <svg v-if="recipe.seen" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">>
+                  <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+                </svg>
+                <svg v-else xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
+                  <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+                </svg>
+              </div>
+              <div>Favorite
+                <svg v-if="recipe.favorite" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">>
+                  <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+                </svg>
+                <svg v-else xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
+                  <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+                </svg>
+              </div>
+              <div>
+                <div v-if="recipe.servings">
+                  Servings: {{recipe.servings}} 
+                 </div>
+                 <div v-else>
+                  Servings: {{1}} 
+                 </div>
               </div>
 
-              <!-- <svg v-if="recipe.favorite" class="favorite-icon" style="position: absolute; top: 5px; left: 5px;">
-                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" style="fill: yellow;" />
-              </svg>
-              <a @click="handleFavoriteClick" v-if="!recipe.favorite" class="favorite-icon" style="position: absolute; top: 5px; left: 5px;">
-                <svg>
-                  <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z" style="fill: yellow;" />
-                </svg>
-              </a> -->
             </div>
-            Ingredients:
+            <h3>
+              Ingredients
+            </h3>
             <ul>
               <li
                 v-for="(r, index) in recipe.extendedIngredients"
@@ -47,19 +78,29 @@
               </li>
             </ul>
           </div>
-          <div class="wrapped">
+          <!-- <div class="wrapped">
             Instructions:
             <ol>
-              <!-- <li v-for="s in recipe._instructions" :key="s.number">
-                {{ s.step }}
-              </li> -->
+              <li v-for="s in recipe._instructions" :key="s.number">
+                {{ (s.step != '') ? s.step : null }}
+              </li>
             </ol>
+          </div> -->
+          <h3 class="">
+             Instructions
+          </h3>
+            <br>
+          <div class="wrapped" v-if="recipe.instructions && recipe.instructions.length != 0">
+            <br>
+            <p>{{recipe.instructions}}</p>
+          </div>
+          <div v-else><br>There Are No Instructions Available For This Recipe.
           </div>
         </div>
       </div>
+    </center>
       <pre>
-      {{ $route.params }}
-      {{ recipe }}
+
     </pre
       >
     </div>
@@ -92,6 +133,8 @@ export default {
         );
 
         // console.log("response.status", response.status);
+        console.log("response");
+        console.log(response);
         if (response.status !== 200) this.$router.replace("/NotFound");
       } catch (error) {
         console.log("error.response.status", error.response.status);
@@ -100,13 +143,18 @@ export default {
       }
 
       let {
-        // analyzedInstructions,
-        instructions,
-        extendedIngredients,
-        aggregateLikes,
-        readyInMinutes,
+        title,
         image,
-        title
+        readyInMinutes,
+        popularity,
+        vegan,
+        vegetarian,
+        glutenFree,
+        seen,
+        favorite,
+        servings,
+        instructions,
+        extendedIngredients
       } = response.data;
 
       // let _instructions = analyzedInstructions
@@ -117,14 +165,18 @@ export default {
       //   .reduce((a, b) => [...a, ...b], []);
 
       let _recipe = {
-        instructions,
-        // _instructions,
-        // analyzedInstructions,
-        extendedIngredients,
-        aggregateLikes,
-        readyInMinutes,
+        title,
         image,
-        title
+        readyInMinutes,
+        popularity,
+        vegan,
+        vegetarian,
+        glutenFree,
+        seen,
+        favorite,
+        servings,
+        instructions,
+        extendedIngredients
       };
 
       this.recipe = _recipe;
@@ -135,10 +187,9 @@ export default {
 
   methods: {
     async handleFavoriteClick() {
-      console.log("hey, recipe added")
-      console.log( this.$route.params.recipeId)
+
       try {
-        
+    
         const response = await this.axios.post(
           this.$root.store.server_domain + "/users/favorites",
           { recipeId: this.$route.params.recipeId },
@@ -157,7 +208,7 @@ export default {
 </script>
 
 <style scoped>
-
+/* 
 .container {
   margin-top: 0px;
 }
@@ -166,6 +217,26 @@ export default {
 }
 .wrapped {
   width: 50%;
+} */
+.wrapper {
+  border: 1px solid #00ffea;
+  padding: 10px;
+  margin-bottom: 10px;
+  max-width: 800px;
+}
+
+.recipe-body {
+  border: 1px solid #000000;
+  padding: 10px;
+  max-width: 850px;
+}
+.recipe-body h3 {
+  color: #575353;
+  font-weight: bold;
+}
+
+.recipe-body li {
+  color: #6d9273;
 }
 .center {
   display: block;

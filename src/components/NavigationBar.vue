@@ -12,28 +12,35 @@
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
         <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="collapsibleNavbar">
+    <div class="collapse navbar-collapse" id="collapsibleNavbar" stylt="height:50px;">
         <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-                <a class="nav-link" href="index.html">Home</a>
+            <li class="nav-item" >
+                <!-- <a class="nav-link" href="index.html">Home</a> -->
+                <router-link :to="{ name: 'main' }" class="nav-link" >Home</router-link>
+
             </li>
-            <li class="nav-item">
+            <li class="nav-item" >
             <router-link v-if="!$root.store.username" :to="{ name: 'login' }" class="nav-link" >Login</router-link>
           </li>
-          <li class="nav-item">
+          <li class="nav-item" >
             <router-link v-if="!$root.store.username" :to="{ name: 'register' }" class="nav-link" >Register</router-link>
             </li>
             <li class="nav-item">     
               <router-link :to="{ name: 'search' }" class="nav-link" >Search</router-link>
             </li>  
-            <li class="nav-item">
+            <li class="nav-item" >
               <router-link :to="{ name: 'about' }" class="nav-link" >About</router-link>
             </li>  
-            <li class="nav-item"> 
+            <!-- <li class="nav-item"> 
                <router-link v-if="$root.store.username" :to="{ name: 'createRecipe' }" class="nav-link" @click="openModal">Create New Recipe</router-link>
-            </li>  
-            <CreateNewRecipeModal v-if="showModal" @closeModal="closeModal"></CreateNewRecipeModal>
-            <li v-if="$root.store.username" class="nav-item dropdown">
+            </li>  -->
+            <li v-if="$root.store.username" class="nav-item">
+                <!-- <router-link id="routLink" :to="{ name: 'createRecipe' }" class="nav-link" style="display:inline-block">Create Recipe</router-link> -->
+                <b-button variant="light" v-b-modal.modal-prevent-closing style="margin-top: 0px; font-size: 17px;">Create New Recipe</b-button>
+                <CreateNewRecipeModal> </CreateNewRecipeModal>
+            </li> 
+            <!-- <CreateNewRecipeModal v-if="showModal" @closeModal="closeModal"></CreateNewRecipeModal> -->
+            <li v-if="$root.store.username" class="nav-item dropdown" >
             <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Personal
             </a>
@@ -43,7 +50,7 @@
               <router-link :to="{ name: 'familyRecipes' }" class="dropdown-item">Family Recipes</router-link>
             </div>
           </li>
-          <li class="nav-item">
+          <li class="nav-item" >
             <a class="nav-link" v-if="$root.store.username" href="#" @click="Logout" >Logout</a>
           </li>
         </ul>
@@ -74,14 +81,14 @@
                 this.$forceUpdate();
             });
       },
-      openModal() {
-        const modal = new bootstrap.Modal(document.getElementById('createNewRecipeModal'));
-        modal.show();
-        this.showModal = true;
-      },
-      closeModal() {
-        this.showModal = false;
-      }
+      // openModal() {
+      //   const modal = new bootstrap.Modal(document.getElementById('createNewRecipeModal'));
+      //   modal.show();
+      //   this.showModal = true;
+      // },
+      // closeModal() {
+      //   this.showModal = false;
+      // }
     }
   }
   </script>
@@ -116,7 +123,9 @@ hr {
 }
 
 
-
+.nav-item{
+  height: 60px;
+}
 .dropdown-menu {
   background-color: #2c3030;
   border: none;

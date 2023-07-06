@@ -2,12 +2,10 @@ import Vue from "vue";
 import App from "./App.vue";
 import VueAxios from "vue-axios";
 import axios from "axios";
-import 'bootstrap/dist/css/bootstrap.css';
-import 'bootstrap/dist/js/bootstrap.js';
-
-import VueCookies from "vue-cookies";
-// axios.defaults.withCredentials = true;
+axios.defaults.withCredentials = true;
+// axios.defaults.baseURL = "http://localhost:3000";
 Vue.prototype.$http = axios;
+
 import routes from "./routes";
 import VueRouter from "vue-router";
 Vue.use(VueRouter);
@@ -29,6 +27,7 @@ import {
   AlertPlugin,
   ToastPlugin,
   LayoutPlugin,
+  ModalPlugin
 } from "bootstrap-vue";
 [
   FormGroupPlugin,
@@ -41,6 +40,8 @@ import {
   AlertPlugin,
   ToastPlugin,
   LayoutPlugin,
+  ModalPlugin,
+
 ].forEach((x) => Vue.use(x));
 Vue.use(Vuelidate);
 
@@ -70,20 +71,25 @@ axios.interceptors.response.use(
 Vue.use(VueAxios, axios);
 
 Vue.config.productionTip = false;
+import VueCookies from "vue-cookies";
+import state from "./store";
 
 Vue.use(VueCookies);
 const shared_data = {
-  server_domain: "http://127.0.0.1:3000",
+  server_domain: state.server_domain,
   username: localStorage.username,
+  array_search: [],
   login(username) {
     localStorage.setItem("username", username);
     this.username = username;
     console.log("login", this.username);
+    this.array_search = [];
   },
   logout() {
     console.log("logout");
     localStorage.removeItem("username");
     this.username = undefined;
+    this.array_search = [];
   },
 };
 console.log(shared_data);

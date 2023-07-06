@@ -1,10 +1,10 @@
 <template>
   <b-container>
-    <h1>My Recipes</h1>
-    <b-row>
+    <center><h1>My Recipes</h1></center>
+    <b-row class="recipe-preview-wrapper">
       <b-col v-for="(recipe, index) in recipes" :key="recipe.id" :lg="6" :md="6" :sm="12">
-        <div class="recipe-preview-wrapper">
-          <RecipePreview class="recipePreview" :recipe="recipe" />
+        <div >
+          <RecipePreview class="recipe-preview" :recipe="recipe[0]" />
         </div>
         <b-col v-if="(index + 1) % 2 === 0" class="clearfix"></b-col>
       </b-col>
@@ -27,16 +27,14 @@ import RecipePreview from "../components/RecipePreview";
     }, 
 
     created() {
-      this.getFavoriteRecipes();
+      this.getRecipes();
     },
 
     methods: {
-      async getFavoriteRecipes() {
+      async getRecipes() {
       try {
-        // this.axios.defaults.withCredentials = true; 
         const response = await this.axios.get(
-          this.$root.store.server_domain + "/users/myRecipes",
-          // "https://test-for-3-2.herokuapp.com/recipes/random"
+          this.$root.store.server_domain + "/users/myRecipesPreview",
           {withCredentials: true}
         );
 
@@ -45,11 +43,16 @@ import RecipePreview from "../components/RecipePreview";
           alert("You don't have recipes saved :(");
         }
 
-        console.log(response);
         const recipess = response.data;
+
+        // Loop over recipess and update the popularity value - 100 - (stam value sebharti... za lo kriti)
+        this.recipess = recipess.map(recipe => {
+          recipe[0].popularity = 100;
+          return recipe[0];
+        });
+        console.log(recipess);
         this.recipes = [];
         this.recipes.push(...recipess);
-        console.log(this.recipes);
       } catch (error) {
         console.log(error);
       }
@@ -67,6 +70,10 @@ import RecipePreview from "../components/RecipePreview";
 
   .recipe-preview-wrapper {
   margin-bottom: 15px;
+}
+
+.recipe-preview-wrapper .recipe-preview {
+  margin-right: 20%;
 }
 
 .clearfix {

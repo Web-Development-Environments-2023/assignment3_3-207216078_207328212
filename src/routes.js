@@ -8,7 +8,7 @@ const routes = [
     component: Main,
   },
   {
-    path: "register",
+    path: "/register",
     name: "register",
     component: () => import("./pages/RegisterPage"),
   },
@@ -32,11 +32,11 @@ const routes = [
     name: "about",
     component: () => import("./pages/aboutPage"),
   },
-  {
-    path: "/createRecipe",
-    name: "createRecipe",
-    component: () => import("./components/CreateNewRecipeModal.vue"),
-  },
+  // {
+  //   path: "/createRecipe",
+  //   name: "createRecipe",
+  //   component: () => import("./components/CreateNewRecipeModal.vue"),
+  // },
   {
     path: "/favorites",
     name: "favorites",
