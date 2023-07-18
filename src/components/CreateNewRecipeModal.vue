@@ -272,5 +272,16 @@
   
   <style>
 
+  .b-form-group {
+    margin-bottom: 10px;
+  }
+
+  .b-form-input,
+  .b-form-select {
+    margin-bottom: 5px;
+    /* Add any necessary padding */
+    padding: 5px;
+  }
+
   </style>
   

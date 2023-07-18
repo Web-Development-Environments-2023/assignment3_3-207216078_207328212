@@ -36,7 +36,7 @@
             </li>  -->
             <li v-if="$root.store.username" class="nav-item">
                 <!-- <router-link id="routLink" :to="{ name: 'createRecipe' }" class="nav-link" style="display:inline-block">Create Recipe</router-link> -->
-                <b-button variant="light" v-b-modal.modal-prevent-closing style="margin-top: 0px; font-size: 17px;">Create New Recipe</b-button>
+                <b-button variant="light" v-b-modal.modal-prevent-closing class="custom-button">Create New Recipe</b-button>
                 <CreateNewRecipeModal> </CreateNewRecipeModal>
             </li> 
             <!-- <CreateNewRecipeModal v-if="showModal" @closeModal="closeModal"></CreateNewRecipeModal> -->
@@ -326,6 +326,45 @@ section {
 .jumbotron h3 {
 	font-size: 25px;
 }
+
+.custom-button {
+  border: none;
+  box-shadow: none;
+  padding: 0;
+  background: transparent;
+  margin-top: 15px;
+  text-transform: uppercase;
+	font-weight: 600;
+	font-size: 14px;
+	color: #fff;
+	margin: auto 5px;
+  font-family: 'Lato', sans-serif; 
+  text-shadow: #222 0.3em 0.3em 0.3em;  
+  
+  height: 37px;
+
+}
+
+.custom-button:hover,
+.custom-button:active,
+.custom-button:focus {
+  border: none;
+  box-shadow: none;
+  background-color: transparent;
+  outline: none;
+  color: inherit !important;
+  text-decoration: none;
+  color: #868582;
+	transition: color 1s; 
+}
+
+.custom-button:active {
+  background-color: transparent !important;
+  border-color: transparent !important;
+  border: none;
+}
+
+
 
   </style>
   

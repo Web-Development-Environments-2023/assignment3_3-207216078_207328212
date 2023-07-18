@@ -4,7 +4,8 @@
     <div class="row">
       <div class="col-lg-6">
         <RecipePreviewList ref="randomPreview" title="Explore these recipes" class="RandomRecipes center" />
-        <div style="display: flex; justify-content: center; margin-top: 300px;">
+        <!-- <b-button type="reset" variant="warning" @click="refreshRecipes" style="margin-right: 10px;">Refresh Recipes</b-button> -->
+        <div style="display: inline-block; justify-content: center; align-items: center; height: 100%;">
           <b-button type="reset" variant="warning" @click="refreshRecipes">Refresh Recipes</b-button>
         </div>
       </div>

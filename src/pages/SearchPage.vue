@@ -7,7 +7,7 @@
 
       <div class="form-group">
         <label for="searchQuery">Search:</label>
-        <input type="text" id="searchQuery" v-model="searchQuery" placeholder="What do you want to make?" class="wide-input" style="width: 220px;"/>
+        <input type="text" id="searchQuery" v-model="searchQuery" placeholder="What do you want to make?" class="wide-input" style="width: 220px; margin-left: 20px;"/>
       </div>
 
       <div class="form-group">
@@ -29,7 +29,7 @@
       </div>
       <div class="form-group">
         <label for="cuisine">Filter By Cuisine:</label>
-        <select id="cuisine" v-model="selectedCuisine">
+        <select id="cuisine" v-model="selectedCuisine" style="margin-left: 20px;">
           <option value="">No Filter</option>
           <option v-for="cuisine in cuisines" :key="cuisine" :value="cuisine">{{ cuisine }}</option>
         </select>
@@ -37,7 +37,7 @@
 
       <div class="form-group">
         <label for="diet">Filter By Diet:</label>
-        <select id="diet" v-model="selectedDiet">
+        <select id="diet" v-model="selectedDiet" style="margin-left: 20px;">
           <option value="">No Filter</option>
           <option v-for="diet in diets" :key="diet" :value="diet">{{ diet }}</option>
         </select>
@@ -45,7 +45,7 @@
 
       <div class="form-group">
         <label for="intolerance">Filter By Intolerance:</label>
-        <select id="intolerance" v-model="selectedIntolerance">
+        <select id="intolerance" v-model="selectedIntolerance" style="margin-left: 20px;">
           <option value="">No Filter</option>
           <option v-for="intolerance in intolerances" :key="intolerance" :value="intolerance">{{ intolerance }}</option>
         </select>
@@ -153,14 +153,6 @@ export default {
         console.log(error);
         this.$router.replace("/NotFound");
       };
-      
-      // seems that the params works good :)
-      // console.log(this.searchQuery);
-      // console.log(this.$route.params.query);
-      // console.log(this.resultsCount);
-      // console.log(this.selectedCuisine);
-      // console.log(this.selectedDiet);
-      // console.log(this.selectedIntolerance );
     },
 
     SortByPopularity() {
@@ -168,7 +160,8 @@ export default {
       this.response = [];
         let sorted_arr = this.$root.store.array_search;
         sorted_arr.sort(function comparePopularity(a,b) {
-          return parseInt(a.popularity) - parseInt(b.popularity);
+          // return parseInt(a.popularity) - parseInt(b.popularity);
+          return parseInt(b.popularity) - parseInt(a.popularity);
         });
         this.response = sorted_arr;
         this.$forceUpdate();
@@ -178,7 +171,8 @@ export default {
       this.response = [];
         let sorted_arr = this.$root.store.array_search;
         sorted_arr.sort(function compareTime(a,b) {
-          return parseInt(a.readyInMinutes) - parseInt(b.readyInMinutes);
+          // return parseInt(a.readyInMinutes) - parseInt(b.readyInMinutes);
+          return parseInt(b.readyInMinutes) - parseInt(a.readyInMinutes);
         });
         this.response = sorted_arr;
         this.$forceUpdate();
