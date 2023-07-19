@@ -34,7 +34,7 @@
             <!-- <li class="nav-item"> 
                <router-link v-if="$root.store.username" :to="{ name: 'createRecipe' }" class="nav-link" @click="openModal">Create New Recipe</router-link>
             </li>  -->
-            <li v-if="$root.store.username" class="nav-item">
+            <li v-if="$root.store.username">
                 <!-- <router-link id="routLink" :to="{ name: 'createRecipe' }" class="nav-link" style="display:inline-block">Create Recipe</router-link> -->
                 <b-button variant="light" v-b-modal.modal-prevent-closing class="custom-button">Create New Recipe</b-button>
                 <CreateNewRecipeModal> </CreateNewRecipeModal>

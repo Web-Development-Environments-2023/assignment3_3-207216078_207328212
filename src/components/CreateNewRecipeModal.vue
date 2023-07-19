@@ -14,6 +14,8 @@
           label-for="name-input"
           invalid-feedback="Name required"
           :state="nameState"
+          style="display: initial !important;"
+
         >
           <b-form-input
             id="name-input"
@@ -27,6 +29,8 @@
           label-for="url"
           invalid-feedback="URL required"
           :state="nameState"
+          style="display: initial !important;"
+
         >
          <b-form-input
             id="url"
@@ -42,6 +46,8 @@
           label-for="ready"
           invalid-feedback="Time required"
           :state="nameState"
+          style="display: initial !important;"
+
         >
           <b-form-input
             id="ready"
@@ -68,6 +74,8 @@
           label="Vegan / Vegetarian / None"
           invalid-feedback="Value required"
           :state="nameState"
+          style="display: initial !important;"
+
         >
           <b-form-select v-model="vegan" :options="options_v" style="width:150px; margin-left:0px; height:40px; margin-bottom:5px"></b-form-select>
         </b-form-group>
@@ -76,6 +84,8 @@
           label-for="name-input"
           invalid-feedback="Value required"
           :state="nameState"
+          style="display: initial !important;"
+
         >
         <b-form-select v-model="gluten" :options="options_g" style="width:150px; margin-left:0px; height:40px; margin-bottom:5px"></b-form-select>
         </b-form-group>
@@ -84,6 +94,8 @@
           label-for="name-input"
           invalid-feedback="Value required"
           :state="nameState"
+          style="display: initial !important;"
+
         >
           <b-form-input
             id="ing-name"
@@ -110,6 +122,8 @@
           label-for="servings"
           invalid-feedback="Servings required"
           :state="nameState"
+          style="display: initial !important;"
+
         >
           <b-form-input
             id="servings"
@@ -119,28 +133,29 @@
             required
           ></b-form-input>
         </b-form-group>
-        </form>
         <!-- <b-form-group
           label-for="instructions"
           invalid-feedback="Instructions required"
         >
         <label for="instructions" style="width: 70px;display:inline;margin-left:0px ">Instructions</label>
         </b-form-group> -->
-
-        <b-form-group
-          label="Instructions"
-          label-for="instructions"
-          invalid-feedback="Instructions required"
-          :state="nameState"
-        >
-          <b-form-input
-            id="popularity"
-            v-model="instructions"
-            placeholder="type here to fill instructions..."
+          <b-form-group
+            label="Instructions"
+            label-for="instructions"
+            invalid-feedback="Instructions required"
             :state="nameState"
-            required
-          ></b-form-input>
-        </b-form-group>
+            style="display: initial !important;"
+          >
+            <b-form-input
+              id="popularity"
+              v-model="instructions"
+              placeholder="type here to fill instructions..."
+              :state="nameState"
+              required
+            ></b-form-input>
+          </b-form-group>
+        </form>
+
   
     </b-modal>
   </div>
@@ -275,13 +290,34 @@
   .b-form-group {
     margin-bottom: 10px;
   }
-
+  /* .form-group {
+    display: intial !important;
+    align-items: center;
+  } */
   .b-form-input,
   .b-form-select {
     margin-bottom: 5px;
     /* Add any necessary padding */
     padding: 5px;
   }
+  .modal-dialog{
+    max-width: 500px;
+    margin: 1.75rem auto;
+    min-height: 800px;
+  }
+  .modal-content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    pointer-events: auto;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid rgba(0,0,0,.2);
+    border-radius: 0.3rem;
+    outline: 0;
+    min-height: 800px;
+}
 
   </style>
   
