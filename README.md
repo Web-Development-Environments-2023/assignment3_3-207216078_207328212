@@ -8,7 +8,7 @@ Noy gabay 207216078 Avital Galper 207328212
 This is a full stack project built by us as part of the course "Web Development Environments" <br>
 API document written in YAML using Swagger, <br>
 Server side implemented in NodeJS, <br>
-Client side implemented in Vue, <br>
+Client side implemented in Vue <br>
 
 ## Functionalities 
 * login / register to the website
