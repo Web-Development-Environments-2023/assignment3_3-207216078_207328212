@@ -221,16 +221,7 @@ export default {
 </script>
 
 <style scoped>
-/* 
-.container {
-  margin-top: 0px;
-}
-.wrapper {
-  display: flex;
-}
-.wrapped {
-  width: 50%;
-} */
+
 .wrapper {
   border: 1px solid #00ffea;
   padding: 10px;
@@ -257,7 +248,5 @@ export default {
   margin-right: auto;
   width: 50%;
 }
-/* .recipe-header{
 
-} */
 </style>

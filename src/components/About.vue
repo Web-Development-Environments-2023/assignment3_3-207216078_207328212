@@ -74,7 +74,7 @@
 .team-members {
   display: flex;
   justify-content: center;
-  gap: 30px; /* Adjust the gap between team members as needed */
+  gap: 30px;
 }
 
   

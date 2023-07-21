@@ -15,9 +15,7 @@
     <div class="collapse navbar-collapse" id="collapsibleNavbar" stylt="height:50px;">
         <ul class="navbar-nav ml-auto">
             <li class="nav-item" >
-                <!-- <a class="nav-link" href="index.html">Home</a> -->
                 <router-link :to="{ name: 'main' }" class="nav-link" >Home</router-link>
-
             </li>
             <li class="nav-item" >
             <router-link v-if="!$root.store.username" :to="{ name: 'login' }" class="nav-link" >Login</router-link>
@@ -31,15 +29,10 @@
             <li class="nav-item" >
               <router-link :to="{ name: 'about' }" class="nav-link" >About</router-link>
             </li>  
-            <!-- <li class="nav-item"> 
-               <router-link v-if="$root.store.username" :to="{ name: 'createRecipe' }" class="nav-link" @click="openModal">Create New Recipe</router-link>
-            </li>  -->
             <li v-if="$root.store.username">
-                <!-- <router-link id="routLink" :to="{ name: 'createRecipe' }" class="nav-link" style="display:inline-block">Create Recipe</router-link> -->
                 <b-button variant="light" v-b-modal.modal-prevent-closing class="custom-button">Create New Recipe</b-button>
                 <CreateNewRecipeModal> </CreateNewRecipeModal>
             </li> 
-            <!-- <CreateNewRecipeModal v-if="showModal" @closeModal="closeModal"></CreateNewRecipeModal> -->
             <li v-if="$root.store.username" class="nav-item dropdown" >
             <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Personal
@@ -81,14 +74,6 @@
                 this.$forceUpdate();
             });
       },
-      // openModal() {
-      //   const modal = new bootstrap.Modal(document.getElementById('createNewRecipeModal'));
-      //   modal.show();
-      //   this.showModal = true;
-      // },
-      // closeModal() {
-      //   this.showModal = false;
-      // }
     }
   }
   </script>

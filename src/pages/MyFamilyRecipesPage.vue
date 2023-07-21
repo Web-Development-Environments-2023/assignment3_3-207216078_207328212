@@ -142,12 +142,12 @@ export default {
   color: #6d9273;
 }
 .ingredient-name {
-  color: blue; /* Change the color as per your preference */
+  color: blue;
 }
 
 .instructions {
   border: 1px solid #000000;
   padding: 10px;
-  background-color: #c49f9f; /* Change the background color as per your preference */
+  background-color: #c49f9f; 
 }
 </style>

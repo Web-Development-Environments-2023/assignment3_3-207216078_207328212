@@ -103,7 +103,7 @@ export default {
         // "https://test-for-3-2.herokuapp.com/recipes/random"
         {withCredentials: true}
         );
-        this.recipe.favorite = true; // ???????????????
+        this.recipe.favorite = true; 
         console.log(response);
       } catch (error) {
         console.log(error);
@@ -122,16 +122,6 @@ export default {
 .rounded-0 {
   height: 100%;
 }
-
-/* .card-body {
-  font-size: 16px;
-  padding: 10px;
-}
-
-.card-title {
-  font-size: 18px;
-  overflow-wrap: break-word;
-} */
 
 .custom-star:hover {
     cursor: pointer;

@@ -19,7 +19,7 @@
           First name is required
         </b-form-invalid-feedback>
         <b-form-invalid-feedback v-if="!$v.form.firstName.alpha">
-          First name alpha
+          First name must contain characters only
         </b-form-invalid-feedback>
       </b-form-group>
 
@@ -39,7 +39,7 @@
           Last name is required
         </b-form-invalid-feedback>
         <b-form-invalid-feedback v-if="!$v.form.lastName.alpha">
-          Last name alpha
+          Last name must contain characters only
         </b-form-invalid-feedback>
       </b-form-group>
 
@@ -63,7 +63,7 @@
           Username length should be between 3-8 characters long
         </b-form-invalid-feedback>
         <b-form-invalid-feedback v-if="!$v.form.username.alpha">
-          Username alpha
+          Username must contain characters only
         </b-form-invalid-feedback>
       </b-form-group>
 
@@ -152,7 +152,7 @@
           Email address is required
         </b-form-invalid-feedback>
         <b-form-invalid-feedback v-if="!$v.form.email.alpha">
-          Email address alpha
+          Email address isn't valid
         </b-form-invalid-feedback>
       </b-form-group>
 

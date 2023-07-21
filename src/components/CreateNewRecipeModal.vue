@@ -56,20 +56,7 @@
             required
           ></b-form-input>
         </b-form-group>
-        <!-- <b-form-group
-          label="Popularity"
-          label-for="popularity"
-          invalid-feedback="Popularity required"
-          :state="nameState"
-        >
-          <b-form-input
-            id="popularity"
-            v-model="likes"
-            placeholder="Likes"
-            :state="nameState"
-            required
-          ></b-form-input>
-        </b-form-group> -->
+
         <b-form-group
           label="Vegan / Vegetarian / None"
           invalid-feedback="Value required"
@@ -133,12 +120,7 @@
             required
           ></b-form-input>
         </b-form-group>
-        <!-- <b-form-group
-          label-for="instructions"
-          invalid-feedback="Instructions required"
-        >
-        <label for="instructions" style="width: 70px;display:inline;margin-left:0px ">Instructions</label>
-        </b-form-group> -->
+
           <b-form-group
             label="Instructions"
             label-for="instructions"
@@ -290,14 +272,10 @@
   .b-form-group {
     margin-bottom: 10px;
   }
-  /* .form-group {
-    display: intial !important;
-    align-items: center;
-  } */
+
   .b-form-input,
   .b-form-select {
     margin-bottom: 5px;
-    /* Add any necessary padding */
     padding: 5px;
   }
   .modal-dialog{

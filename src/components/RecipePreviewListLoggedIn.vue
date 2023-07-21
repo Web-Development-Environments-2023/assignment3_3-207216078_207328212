@@ -44,7 +44,6 @@
           const recipess = response.data;
           this.recipes = [];
           this.recipes.push(...recipess);
-          //  console.log(this.recipes);
         } catch (error) {
           // console.log(error);
         }

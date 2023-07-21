@@ -45,7 +45,7 @@ import RecipePreview from "../components/RecipePreview";
 
         const recipess = response.data;
 
-        // Loop over recipess and update the popularity value - 100 - (stam value sebharti... za lo kriti)
+        // Loop over recipes and update the popularity value - 100
         this.recipess = recipess.map(recipe => {
           recipe[0].popularity = 100;
           return recipe[0];

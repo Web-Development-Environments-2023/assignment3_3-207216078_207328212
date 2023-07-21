@@ -1,6 +1,5 @@
 <template>
   <div class="container">
-
       <div class="search-form" >
       
         <h1 class="title">Search Page</h1>
@@ -50,14 +49,8 @@
           <option v-for="intolerance in intolerances" :key="intolerance" :value="intolerance">{{ intolerance }}</option>
         </select>
       </div>
-    
-      <!-- <div class="form-group">
-        <button @click="SortByPopularity">Sort By Popularity</button>
-        <button @click="SortByPreparationTime">Sort By Preparation Time</button>
-      </div> -->
       <div>
         <div style="display:inline-block; padding:20px">
-          <!-- <button @click="search">Search</button> -->
           <b-button variant="success" @click="search">Search</b-button>
         </div>
 
